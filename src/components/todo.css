@@ -2,11 +2,20 @@
     padding: 0;
     margin: 0;
 }
+.todoLists{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+    /* text-align: center; */
+}
 .data-display{
     margin: 0;
     border: 1px solid purple;
     margin-top: 30px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    max-width:fit-content;
 }
 .data-values{
     display: flex;
@@ -18,6 +27,9 @@
 .heading{
     color: white;
     background: purple;
+}
+.heading h4{
+    padding: 7px 50px;
 }
 h1, h2, h3, h4, h5, h6, p{
     padding: 5px;
