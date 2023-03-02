@@ -38,3 +38,31 @@ h1, h2, h3, h4, h5, h6, p{
 input, button{
     padding: 7px 15px;
 }
+/* header */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* margin: 0 auto; */
+    padding: 10px 120px;
+}
+.searchbox input{
+    border-radius: 30px;
+    outline: none;
+    padding: 9px 15px;
+}
+
+/* mobile only */
+@media screen and (max-width: 600px) {
+    .header-container{
+        display: flex;
+        padding: 7px 10px !important;
+        justify-content: space-around;
+    }
+    .logo{
+        font-size: 12px;
+    }
+    .heading h4{
+        padding: 6px 25px;
+    }
+}

@@ -1,11 +1,18 @@
-import React from 'react'
-import './header.css';
+import './todo.css';
 
-const Header = () => {
+const Header = ({ search, setSearch }) => {
+
     return (
         <div className='header-container'>
             <div className="logo"><h1>To Do List</h1></div>
-            
+            <div className="searchbox">
+                <form>
+                    <div className="searchInner">
+                        <input type="text" placeholder="Search Movie Name " className="searchText" onChange={(e) => { setSearch(e.target.value) }} value={search} ></input>
+                    </div>
+                </form>
+            </div>
+
         </div>)
 }
 

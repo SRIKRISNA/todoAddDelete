@@ -13,8 +13,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 const Todo = () => {
     const [todo, setTodo] = useState("");
     const [todoList, setTodoList] = useState([]);
-    const [search, setSearch] = useState();
     const [curIdx, setCurIdx] = useState(0);
+    const [search, setSearch] = useState("");
+
 
     // add todo
     const addTodo = () => {
@@ -39,28 +40,11 @@ const Todo = () => {
         setTodoList(newArr);
         setOpen(false);
     }
-    useEffect(() => {
-        fetch(todoList).then(res => res.json()).then(data => {
-            setTodoList(data);
-        })
-    }, [todoList]);
-
-    // function SearchResult(event) {
-    //     event.preventDefault()
-    //     // url = base_URL + "/search/movie?api_key=7c01b82b0aa395aad5febf7f163923a8&query=" + search;
-    //     // setURL(url)
-    //     setSearch(" ")
-    // }
 
     return (
         <div className='todo-container'>
-            <Header /><hr></hr>
-            <form>
-                    <div className="searchBox">
-                        <input type="text" placeholder="Search Movie Name" className="searchText" onChange={(e) => { setSearch(e.target.value) }} value={search} ></input>
-                        {/* <button className="search-btn" onClick={SearchResult}><i className="fas fa-search"></i></button> */}
-                    </div>
-                </form>
+            <Header search={search} setSearch={setSearch}/><hr></hr>
+            
             <div className="todoLists">
                 <div className="inputTodo">
                     <Stack spacing={2} direction="row">
@@ -74,7 +58,10 @@ const Todo = () => {
                         <h4>Remove</h4>
                     </div>
                     {
-                        todoList.map((ele, i) => (
+                        todoList.filter((item)=>{
+                            if(search === ""){ return item;}
+                            else if(item.todo.toLowerCase().includes(search.toLowerCase())) {return item;}
+                        }).map((ele, i) => (
                             <div key={i} className="data-values">
                                 <p>{ele.todo}</p>
                                 <Button onClick={()=>handleClickOpen(i)} color="error" > <DeleteIcon /></Button>
