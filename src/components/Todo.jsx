@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -16,7 +16,6 @@ const Todo = () => {
     const [curIdx, setCurIdx] = useState(0);
     const [search, setSearch] = useState("");
 
-
     // add todo
     const addTodo = () => {
         setTodoList([...todoList, { todo }]);
@@ -25,15 +24,19 @@ const Todo = () => {
     // delete todo
     const [open, setOpen] = React.useState(false);
 
+    // delete prompt box
     const handleClickOpen = (e) => {
         console.log(todoList, e)  //i
         setOpen(true);
         setCurIdx(e);
     };
 
+    // cancel delete todo
     const handleCancel = () => {
         setOpen(false);
     };
+
+    // delete todo
     const RemoveTodo = () => {
         var newArr = [...todoList];
         newArr.splice(curIdx, 1);
@@ -43,15 +46,17 @@ const Todo = () => {
 
     return (
         <div className='todo-container'>
+            {/* Header logo and search box of todo */}
             <Header search={search} setSearch={setSearch}/><hr></hr>
-            
             <div className="todoLists">
+                {/* Add todo */}
                 <div className="inputTodo">
                     <Stack spacing={2} direction="row">
                         <TextField id="standard-basic" label="Add Todo" variant="standard" value={todo} onChange={(e) => setTodo(e.target.value)} />
                         <Button variant="contained" color="success" onClick={addTodo}>Add <AddIcon /></Button>
                     </Stack>
                 </div>
+                {/* search item and display */}
                 <div className="data-display">
                     <div className="data-values heading">
                         <h4>List Item</h4>|
@@ -63,6 +68,7 @@ const Todo = () => {
                             else if(item.todo.toLowerCase().includes(search.toLowerCase())) {return item;}
                         }).map((ele, i) => (
                             <div key={i} className="data-values">
+                                {/* display todo task and remove button */}
                                 <p>{ele.todo}</p>
                                 <Button onClick={()=>handleClickOpen(i)} color="error" > <DeleteIcon /></Button>
                                     <Dialog
