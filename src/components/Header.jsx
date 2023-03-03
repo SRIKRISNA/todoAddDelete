@@ -8,7 +8,7 @@ const Header = ({ search, setSearch }) => {
             <div className="searchbox">
                 <form>
                     <div className="searchInner">
-                        <input type="text" placeholder="Search Movie Name " className="searchText" onChange={(e) => { setSearch(e.target.value) }} value={search} ></input>
+                        <input type="text" placeholder="Search Todos..." className="searchText" onChange={(e) => { setSearch(e.target.value) }} value={search} ></input>
                     </div>
                 </form>
             </div>
